@@ -1,0 +1,5 @@
+server.port: 8185
+spring.data.mongodb.host: localhost
+spring.data.mongodb.port: 27017
+spring.data.mongodb.database: auth_service
+spring.data.mongodb.repositories.enabled: true

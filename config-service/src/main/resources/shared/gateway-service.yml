@@ -1,0 +1,12 @@
+server.port: 8182
+zuul:
+  routes:
+    auth-service:
+      path: /auth-service/**
+      serviceId: auth-service
+    stock-service:
+      path: /stock-service/**
+      serviceId: stock-service
+    order-service:
+      path: /order/**
+      serviceId: order-service

@@ -1,0 +1,25 @@
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+    datasource:
+      username: admin
+      password: admin
+      driverClassName: org.h2.Driver
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        hibernate:
+          ddl-auto: validate
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8180/eureka
+management:
+  endpoints:
+    web:
+      base-path: /act
+      exposure:
+        include: '*'
+testConfig: config-service-application-classpath
