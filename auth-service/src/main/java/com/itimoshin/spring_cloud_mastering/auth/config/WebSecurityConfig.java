@@ -12,23 +12,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // @formatter:off
         http
                 .authorizeRequests().anyRequest().authenticated()
-                .and()/*.authorizeRequests()
-                .antMatchers("/oauth/token").permitAll()
-                .and()*/
-                /*.authorizeRequests().anyRequest().permitAll()
-                .and()*/
+                .and()
                 .csrf().disable();
-        // @formatter:on
     }
-
-/*    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)
-                .passwordEncoder(new BCryptPasswordEncoder());
-    }*/
 
     @Override
     @Bean

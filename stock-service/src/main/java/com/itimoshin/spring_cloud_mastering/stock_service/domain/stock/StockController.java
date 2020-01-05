@@ -17,7 +17,7 @@ public class StockController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole()")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Mono<StockItemEntity> save(@RequestBody StockItemEntity stockItemEntity) {
         return stockService.save(stockItemEntity);
     }
