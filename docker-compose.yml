@@ -1,14 +1,41 @@
 version: '2'
 services:
+  config-service:
+    build: config-service
+    container_name: config-service
+    networks:
+      - backend-network
+  frontend:
+    build: frontend
+    container_name: frontend
+    ports:
+      - "4200:4200"
+    network_mode: host
+  redis:
+    build: redis
+    container_name: redis
+    ports:
+      - "6379:6379"
   nginx:
     build: nginx
+    environment:
+      - FRONTEND_ADDRESS=host.docker.internal:4200
     container_name: nginx
     restart: unless-stopped
     tty: true
     ports:
       - "8888:8888"
-    network_mode: bridge
+    networks:
+      - nginx-network
+      - frontend-network
 
+networks:
+  backend-network:
+    driver: bridge
+  frontend-network:
+    driver: bridge
+  nginx-network:
+    driver: bridge
 #docker-compose exec kafka kafka-topics --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic starship
 #docker-compose exec kafka kafka-topics --delete --zookeeper zookeeper:2181 --topic starship
 #docker-compose exec kafka kafka-topics --list --zookeeper zookeeper:2181
