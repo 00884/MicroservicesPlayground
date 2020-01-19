@@ -10,7 +10,10 @@ services:
     container_name: frontend
     ports:
       - "4200:4200"
-    network_mode: host
+    volumes:
+      - "./frontend/:/app"
+    networks:
+      - frontend-network
   redis:
     build: redis
     container_name: redis
